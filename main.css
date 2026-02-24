@@ -1,0 +1,201 @@
+@import url(
+ "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    padding: 1;
+    margin: 5;
+
+    transition: all 1.05s ease-in-out;
+}
+
+body {
+    /*  */
+    font-family: "Montserrat", sans-serif;
+    background-color: transparent;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.logo {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    margin-top: 8%;
+}
+
+.logoContainer {
+    margin: 1.5rem 0;
+    position: relative;
+    height: 230px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 1.45rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    height: 2.75rem;
+    width: 700px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+
+    margin: 0.5rem 0;
+    border-radius: 15px;
+}
+
+.greetings {
+    font-size: 2.95rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.about {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1.15rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.link span {
+    width: 80%;
+    text-align: center;
+}
+
+.link img {
+    height: 2.5rem;
+    aspect-ratio: 1;
+}
+
+.linkIcon {
+    height: 2rem !important;
+    aspect-ratio: 1;
+}
+
+.link:nth-child(1) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        transparent /*#1a8d1a*/;
+    color: rgb(255, 255, 255); /* Title Text Color */
+}
+
+.link:nth-child(2) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        transparent /*#0077B5*/;
+    color: white; /* Title Text Color */
+}
+
+.link:nth-child(3) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        #a3a2a2;
+    color: white; /* Title Text Color */
+}
+
+.link:nth-child(4) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        #645CAA;
+    color: white;
+}
+
+.link:nth-child(5) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        #d13b86;
+    color: white;
+}
+
+.link:nth-child(6) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        #cc0707dc;
+    color: rgb(255, 255, 255);
+}
+
+.link:nth-child(7) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        #5865F2;
+    color: white;
+}
+
+.link:nth-child(8) {
+    background: linear-gradient(90deg,
+            rgba(241, 241, 241, 0.1) 30%,
+            rgba(113, 113, 113, 0.3) 100%),
+        #cc0707dc;
+    color: white;
+}
+
+.link:hover {
+    filter: drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+    transform: scale(1.15);
+}
+
+.link>* {
+    transition: all 0.45s ease-in-out;
+    transition-delay: 0.15s;
+}
+
+.link:hover>* {
+    transform: scale(1.075);
+    filter: drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 600px) {
+    body { background-size: 100%; }
+
+    .logo img { width: 200px; }
+
+    .link span {
+        width: 70%;
+        text-align: center;
+    }
+
+    .link { width: 95vw; }
+
+    .link:hover { transform: scale(1.01); }
+}
+
+main, .logoContainer, .greetings, .about, .links, .footer, .link {
+    position: relative;
+    z-index: 1;
+}
+
+#breeze-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Behind your content */
+    pointer-events: none; /* Let clicks pass through */
+}
