@@ -1,0 +1,18 @@
+{
+  "name": "linkcluster-professional-profile",
+  "version": "2.0.0",
+  "description": "A customizable LinkTree alternative with animated wind background",
+  "type": "module",
+  "keywords": [
+    "linktree",
+    "portfolio",
+    "three.js",
+    "animation"
+  ],
+  "author": "Connor Kouznetsov (C-Kuzy)",
+  "license": "SEE LICENSE IN ProfProfileTree.LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/C-Kuzy/LinkCluster-Professional-Profile"
+  }
+}
