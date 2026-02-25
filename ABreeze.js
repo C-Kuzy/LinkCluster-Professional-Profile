@@ -12,7 +12,7 @@ const container = document.getElementById('breeze-container');
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(breezeConfig.backgroundColor);
 
-const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.2, 1000);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.2, 1000);
 camera.position.z = 60;
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -20,13 +20,21 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 container.appendChild(renderer.domElement);
 
 // Create realistic 'wind streaks' using curved lines
-const windStreakCount = breezeConfig.streakCount;
+// Reduce particle count on mobile devices for better performance
+const isMobile = window.innerWidth <= 767;
+const isTablet = window.innerWidth > 767 && window.innerWidth <= 1024;
+const windStreakCount = isMobile ? Math.floor(breezeConfig.streakCount * 0.4) : 
+                        isTablet ? Math.floor(breezeConfig.streakCount * 0.7) : 
+                        breezeConfig.streakCount;
 const lines = [];
 const windColors = breezeConfig.colors;
 
 function createCurvedWindStreak() {
-    // Starting position
-    const startX = (Math.random() - 0.5) * breezeConfig.areaWidth;
+    // Start off-screen on the LEFT side (beyond left boundary)
+    const leftBoundary = -(breezeConfig.areaWidth / 2);
+    const startX = leftBoundary - 20 - Math.random() * 30; // Start well off the left edge
+    
+    // Vertical position can be anywhere from top to bottom
     const startY = (Math.random() - 0.5) * breezeConfig.areaHeight;
     const startZ = (Math.random() - 0.5) * breezeConfig.areaDepth;
     
@@ -40,7 +48,7 @@ function createCurvedWindStreak() {
     
     for (let i = 0; i <= segments; i++) {
         const t = i / segments;
-        const x = startX - (streakLength * t);
+        const x = startX - (streakLength * t); // Tail extends further left
         // Add gentle wave-like motion to Y and Z
         const y = startY + Math.sin(t * Math.PI * 2) * (Math.random() * 2 - 1);
         const z = startZ + Math.cos(t * Math.PI * 1.5) * (Math.random() * 1.5 - 0.75);
@@ -73,14 +81,23 @@ function createCurvedWindStreak() {
         streakLength: streakLength,
         originalOpacity: material.opacity,
         wavePhase: Math.random() * Math.PI * 2, // Random starting phase for wave
-        waveSpeed: 0.02 + Math.random() * 0.03  // Random wave animation speed
+        waveSpeed: 0.02 + Math.random() * 0.025  // Random wave animation speed
     };
     
     return line;
 }
 
+// Spawn all wind streaks off-screen to the left with staggered positions
 for (let i = 0; i < windStreakCount; i++) {
     const line = createCurvedWindStreak();
+    // Stagger them at different distances from the left edge
+    // This prevents them all from appearing at once
+    const positions = line.geometry.attributes.position.array;
+    const randomXOffset = Math.random() * breezeConfig.areaWidth;
+    for (let j = 0; j < positions.length; j += 3) {
+        positions[j] += randomXOffset; // Spread them out across the screen initially
+    }
+    line.geometry.attributes.position.needsUpdate = true;
     lines.push(line);
     scene.add(line);
 }
@@ -112,22 +129,30 @@ function animate() {
         // Update wave phase for flowing effect
         userData.wavePhase += userData.waveSpeed;
         
-        // Move all points of the curved line
+        // Move all points of the curved line (LEFT to RIGHT)
         let isOutOfBounds = false;
+        let lastX = -Infinity;
+        
         for (let i = 0; i < positions.length; i += 3) {
-            positions[i] += userData.velocityX;     // x
+            positions[i] += userData.velocityX;     // x (moving right)
             positions[i + 1] += userData.velocityY + Math.sin(userData.wavePhase + i * 0.1) * 0.02; // y with wave
             positions[i + 2] += userData.velocityZ + Math.cos(userData.wavePhase + i * 0.1) * 0.02; // z with wave
             
-            // Check if first point is out of bounds
-            if (i === 0 && positions[i] > breezeConfig.areaWidth / 2) {
-                isOutOfBounds = true;
+            // Track the rightmost point (last point in the streak)
+            if (positions[i] > lastX) {
+                lastX = positions[i];
             }
         }
         
-        // Reset wind streak if it goes out of bounds
+        // Check if the LAST point (tail) has gone off the RIGHT side
+        const rightBoundary = 200; // Right edge of visible area
+        if (lastX > rightBoundary) {
+            isOutOfBounds = true;
+        }
+        
+        // Reset wind streak if it goes out of bounds on the right
         if (isOutOfBounds) {
-            // Remove old line and create new one
+            // Remove old line and create new one starting from the left
             scene.remove(line);
             const newLine = createCurvedWindStreak();
             lines[index] = newLine;
@@ -153,4 +178,11 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Pause animation when page is not visible (battery saving)
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Page is hidden, could pause animation here if needed
+    }
 });

@@ -6,8 +6,7 @@
 
 export const breezeConfig = {
     // Wind Streak Appearance
-    streakCount: 800,           // Number of wind streaks (higher = denser)
-    minStreakLength: 3,         // Minimum length of wind streaks
+    streakCount: 1000,          // Number of wind streaks (higher = denser)                                // Note: Auto-reduced to 40% on mobile, 70% on tablet for performance    minStreakLength: 3,         // Minimum length of wind streaks
     maxStreakLength: 12,        // Maximum length of wind streaks
     
     // Animation Speed
@@ -18,7 +17,7 @@ export const breezeConfig = {
     
     // Visual Properties
     minOpacity: 0.3,            // Minimum transparency
-    maxOpacity: 0.7,            // Maximum transparency
+    maxOpacity: 0.65,           // Maximum transparency
     
     // Area Coverage
     areaWidth: 250,             // Horizontal spread
