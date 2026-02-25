@@ -69,6 +69,7 @@ a {
     margin: 0.5rem 0;
     border-radius: 15px;
     padding: 0 20px;
+    border: 2px solid transparent;
 }
 
 .greetings {
@@ -172,6 +173,36 @@ a {
 .link:hover {
     filter: drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
     transform: scale(1.15);
+    border: 2px solid var(--hover-ring-color, #00d4ff);
+}
+
+/* Customizable hover ring colors for each link */
+.link:nth-child(1):hover {
+    --hover-ring-color: #00d4ff; /* Cyan */
+}
+
+.link:nth-child(2):hover {
+    --hover-ring-color: #0077B5; /* LinkedIn Blue */
+}
+
+.link:nth-child(3):hover {
+    --hover-ring-color: #ffffff; /* White */
+}
+
+.link:nth-child(4):hover {
+    --hover-ring-color: #7289da; /* Discord Purple */
+}
+
+.link:nth-child(5):hover {
+    --hover-ring-color: #e4405f; /* Instagram Pink */
+}
+
+.link:nth-child(6):hover {
+    --hover-ring-color: #ff0000; /* YouTube Red */
+}
+
+.link:nth-child(7):hover {
+    --hover-ring-color: #5865F2; /* Discord Blue */
 }
 
 /* Touch device improvements */
@@ -199,6 +230,47 @@ a {
 
 .link:hover img {
     filter: brightness(0) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* Icon interior illumination - matches border colors exactly */
+.link:nth-child(1):hover img {
+    /* Cyan #00d4ff */
+    filter: invert(70%) sepia(100%) saturate(700%) hue-rotate(155deg) brightness(105%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(2):hover img {
+    /* LinkedIn Blue #0077B5 */
+    filter: invert(40%) sepia(100%) saturate(600%) hue-rotate(175deg) brightness(90%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(3):hover img {
+    /* White #ffffff */
+    filter: invert(100%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(4):hover img {
+    /* Discord Purple #7289da */
+    filter: invert(60%) sepia(50%) saturate(400%) hue-rotate(195deg) brightness(100%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(5):hover img {
+    /* Instagram Pink #e4405f */
+    filter: invert(40%) sepia(100%) saturate(600%) hue-rotate(320deg) brightness(110%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(6):hover img {
+    /* YouTube Red #ff0000 */
+    filter: invert(15%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(110%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(7):hover img {
+    /* Discord Blue #5865F2 */
+    filter: invert(45%) sepia(100%) saturate(600%) hue-rotate(215deg) brightness(105%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+.link:nth-child(8):hover img {
+    /* Pinterest Red #E60023 */
+    filter: invert(20%) sepia(100%) saturate(1000%) hue-rotate(340deg) brightness(100%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
 /* Mobile Phones (Portrait & Landscape) */
