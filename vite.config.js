@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 export default defineConfig({
   // Base public path
@@ -12,24 +13,32 @@ export default defineConfig({
     // Enable minification
     minify: 'terser',
     
-    // Terser options for aggressive minification
+    // Terser options for aggressive minification & security
     terserOptions: {
       compress: {
-        drop_console: true, // Remove console.logs
-        drop_debugger: true,
+        drop_console: true, // Remove console.logs in production
+        drop_debugger: true, // Remove debugger statements
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 2, // Multiple passes for better compression
       },
-      mangle: true, // Mangle variable names
+      mangle: {
+        toplevel: true, // Mangle top-level variable names
+        keep_classnames: false,
+        keep_fnames: false,
+      },
       format: {
-        comments: false, // Remove all comments
+        comments: false, // Strip all comments
       },
     },
     
-    // Generate sourcemaps for debugging (but not inline)
+    // No sourcemaps in production for security
     sourcemap: false,
     
-    // Chunk splitting strategy
+    // Rollup configuration with entry point and output options
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'KzyINdex.html')
+      },
       output: {
         // Content-based hashing for cache busting
         entryFileNames: 'assets/[name]-[hash].js',
@@ -37,9 +46,13 @@ export default defineConfig({
         assetFileNames: 'assets/[name]-[hash].[ext]',
         
         // Manual chunk splitting for better caching
-        manualChunks: {
-          'three': ['three'],
-          'vendor': ['breeze-config.js'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+          if (id.includes('three')) {
+            return 'three';
+          }
         },
       },
     },
