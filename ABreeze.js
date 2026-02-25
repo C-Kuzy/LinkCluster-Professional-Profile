@@ -8,10 +8,19 @@
 
 import breezeConfig from './breeze-config.js';
 
+// Check if THREE.js is loaded
+if (typeof THREE === 'undefined') {
+    console.error('THREE.js not loaded! Breeze animation cannot start.');
+    throw new Error('THREE.js is required for breeze animation');
+}
+
 const container = document.getElementById('breeze-container');
 if (!container) {
     console.error('breeze-container not found!');
+    throw new Error('breeze-container element is missing');
 }
+
+console.log('Starting breeze initialization...');
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(breezeConfig.backgroundColor);
@@ -25,9 +34,11 @@ renderer.domElement.style.display = 'block';
 renderer.domElement.style.position = 'absolute';
 renderer.domElement.style.top = '0';
 renderer.domElement.style.left = '0';
+renderer.domElement.style.width = '100%';
+renderer.domElement.style.height = '100%';
 container.appendChild(renderer.domElement);
 
-console.log('Breeze animation initialized');
+console.log('Breeze renderer appended to container');
 
 // Create realistic 'wind streaks' using curved lines
 // Adjust particle count based on device for performance
@@ -185,6 +196,9 @@ function animate() {
 }
 
 animate();
+
+console.log('Breeze animation started! Canvas size:', renderer.domElement.width, 'x', renderer.domElement.height);
+console.log('Wind streaks created:', lines.length);
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
