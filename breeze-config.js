@@ -6,7 +6,9 @@
 
 export const breezeConfig = {
     // Wind Streak Appearance
-    streakCount: 1000,          // Number of wind streaks (higher = denser)                                // Note: Auto-reduced to 40% on mobile, 70% on tablet for performance    minStreakLength: 3,         // Minimum length of wind streaks
+    streakCount: 1000,          // Number of wind streaks (higher = denser)
+                                // Note: Auto-reduced to 50% on mobile, 75% on tablet for performance
+    minStreakLength: 3,         // Minimum length of wind streaks
     maxStreakLength: 12,        // Maximum length of wind streaks
     
     // Animation Speed
@@ -16,8 +18,8 @@ export const breezeConfig = {
     turbulenceZ: 0.1,           // Depth turbulence (0 = none)
     
     // Visual Properties
-    minOpacity: 0.3,            // Minimum transparency
-    maxOpacity: 0.65,           // Maximum transparency
+    minOpacity: 0.4,            // Minimum transparency
+    maxOpacity: 0.8,            // Maximum transparency (increased for visibility)
     
     // Area Coverage
     areaWidth: 250,             // Horizontal spread
@@ -28,13 +30,15 @@ export const breezeConfig = {
     cameraSwaySpeed: 0.0001,    // Speed of subtle camera movement (0 = none)
     cameraSwayAmount: 2,        // Amount of camera sway
     
-    // Color Palette (Spider-Verse inspired)
+    // Color Palette (Spider-Verse inspired) - BRIGHT colors visible on black!
     colors: [
         0xff2d55,  // Hot pink
         0x8e44ad,  // Deep magenta
         0x2980b9,  // Electric blue
-        0x2d2d2d,  // Neon teal 0x00ffd0
-        0x3a3f4b,  // Soft purple 0x9b59b6
+        0x00ffd0,  // Neon teal (restored - was dark gray!)
+        0x9b59b6,  // Soft purple (restored - was dark gray!)
+        0x66ccff,  // Light blue
+        0xff6f61,  // Coral
         // Add more colors here! Format: 0xRRGGBB
     ],
     
