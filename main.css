@@ -80,6 +80,11 @@ a {
     padding: 0 15px;
 }
 
+.greetings h1 {
+    color: white;
+    margin: 0;
+}
+
 .about {
     font-size: clamp(0.875rem, 3vw, 1.125rem);
     font-weight: 500;
