@@ -55,6 +55,18 @@ export default defineConfig({
           }
         },
       },
+      plugins: [
+        {
+          name: 'rename-index',
+          generateBundle(options, bundle) {
+            // Rename KzyINdex.html to index.html for Vercel
+            const indexHtml = bundle['KzyINdex.html'];
+            if (indexHtml) {
+              indexHtml.fileName = 'index.html';
+            }
+          }
+        }
+      ]
     },
     
     // CSS code splitting
