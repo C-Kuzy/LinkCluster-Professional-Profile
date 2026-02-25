@@ -11,7 +11,7 @@
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #000000;
-    padding: 20px 10px;
+    padding: 10px 10px;
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
@@ -25,7 +25,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 0;
+    padding: 5px 0;
     max-width: 100%;
 }
 
@@ -40,17 +40,17 @@ a {
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    margin-top: 8%;
+    margin-top: 0;
 }
 
 .logoContainer {
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
     position: relative;
     width: clamp(150px, 30vw, 230px);
     height: clamp(150px, 30vw, 230px);
     aspect-ratio: 1;
     border-radius: 50%;
-    margin-bottom: 1.45rem;
+    margin-bottom: 1rem;
 }
 
 .links {
@@ -59,7 +59,7 @@ a {
 }
 
 .link {
-    height: clamp(50px, 8vh, 30px);
+    height: clamp(50px, 8vh, 40px);
     width: min(90vw, 550px);
     max-width: 550px;
     display: flex;
