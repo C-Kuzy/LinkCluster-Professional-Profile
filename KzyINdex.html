@@ -9,24 +9,25 @@
 <!--img src = "https://drive.google.com/file/d/1DpJGM2jaler846HUHLkBq42wIZLN7Xl-/view?usp=drive_link" alt = "My Image"> -->
 
 <head>
-    <meta charset = "UTF-8" />
-    <meta name = "viewport" 
-          content = "width = device - width, initial - scale = 1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>C-Kuzy | Digital LinkCluster</title>
 
+    <!-- Load Three.js first -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+    
+    <!-- Load breeze animation (imports breeze-config.js internally) -->
     <script type="module" src="ABreeze.js"></script>
 
-    <script type = "module" defer 
-            src = "main.js">
-    </script>
+    <!-- Load main link rendering script -->
+    <script type="module" defer src="main.js"></script>
 
-<!-- Necessary Application-->
-    <link rel = "stylesheet" 
-          href = "main.css" />
+    <!-- Necessary Application-->
+    <link rel="stylesheet" href="main.css" />
 
-    <!--<link rel = "stylesheet"
-        href = ""-->
 </head>
 
 <body>

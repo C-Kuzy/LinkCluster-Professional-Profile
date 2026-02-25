@@ -2,16 +2,22 @@
  "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
-    padding: 1;
-    margin: 5;
-
-    transition: all 1.05s ease-in-out;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 body {
-    /*  */
     font-family: "Montserrat", sans-serif;
-    background-color: transparent;
+    background-color: #000000;
+    padding: 20px 10px;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 main {
@@ -19,11 +25,13 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
+    max-width: 100%;
 }
 
 a {
     text-decoration: none;
-    font-size: 1.125rem;
+    font-size: clamp(0.95rem, 3vw, 1.125rem);
     font-weight: 700;
 }
 
@@ -38,7 +46,8 @@ a {
 .logoContainer {
     margin: 1.5rem 0;
     position: relative;
-    height: 230px;
+    width: clamp(150px, 30vw, 230px);
+    height: clamp(150px, 30vw, 230px);
     aspect-ratio: 1;
     border-radius: 50%;
     margin-bottom: 1.45rem;
@@ -50,31 +59,40 @@ a {
 }
 
 .link {
-    height: 2.75rem;
-    width: 700px;
-
+    height: clamp(50px, 8vh, 70px);
+    width: min(90vw, 700px);
+    max-width: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #000;
-
     margin: 0.5rem 0;
     border-radius: 15px;
+    padding: 0 20px;
 }
 
 .greetings {
-    font-size: 2.95rem;
+    font-size: clamp(1.5rem, 6vw, 2.95rem);
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: white;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.greetings h1 {
+    color: white;
+    margin: 0;
 }
 
 .about {
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 3vw, 1.125rem);
     font-weight: 500;
     margin-bottom: 1.15rem;
     text-align: center;
     color: rgb(255, 255, 255);
+    padding: 0 20px;
+    line-height: 1.6;
 }
 
 .link span {
@@ -83,8 +101,10 @@ a {
 }
 
 .link img {
-    height: 2.5rem;
+    height: clamp(32px, 5vw, 40px);
+    width: clamp(32px, 5vw, 40px);
     aspect-ratio: 1;
+    flex-shrink: 0;
 }
 
 .linkIcon {
@@ -161,6 +181,19 @@ a {
     transform: scale(1.15);
 }
 
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+    .link:hover {
+        transform: none;
+        filter: none;
+    }
+    
+    .link:active {
+        transform: scale(0.98);
+        filter: brightness(0.9);
+    }
+}
+
 .link>* {
     transition: all 0.45s ease-in-out;
     transition-delay: 0.15s;
@@ -171,19 +204,46 @@ a {
     filter: drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
-@media (max-width: 600px) {
-    body { background-size: 100%; }
-
-    .logo img { width: 200px; }
-
-    .link span {
-        width: 70%;
-        text-align: center;
+/* Mobile Phones (Portrait & Landscape) */
+@media (max-width: 767px) {
+    body { 
+        padding: 15px 8px;
     }
+    
+    main {
+        padding: 10px 0;
+    }
+    
+    .logoContainer {
+        width: 140px;
+        height: 140px;
+        margin: 1rem auto 1.25rem;
+    }
+    
+    .link {
+        margin: 0.4rem 0;
+    }
+    
+    /* Better touch targets on mobile */
+    .link:active {
+        transform: scale(0.97);
+        opacity: 0.9;
+    }
+}
 
-    .link { width: 95vw; }
+/* Tablets (Portrait) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .link {
+        width: 85vw;
+        max-width: 650px;
+    }
+}
 
-    .link:hover { transform: scale(1.01); }
+/* Desktop & Large Screens */
+@media (min-width: 1025px) {
+    .link {
+        width: 700px;
+    }
 }
 
 main, .logoContainer, .greetings, .about, .links, .footer, .link {
@@ -193,9 +253,17 @@ main, .logoContainer, .greetings, .about, .links, .footer, .link {
 
 #breeze-container {
     position: fixed;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 0; /* Behind your content */
-    pointer-events: none; /* Let clicks pass through */
+    z-index: 0;
+    pointer-events: none;
+    display: block !important;
+}
+
+#breeze-container canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
 }

@@ -2,110 +2,214 @@
  Author: C-Kuzy
  Description: Tagged with HTML file to deliver an interactive "wind"/"breeze"
               background that "sits" behind all other windows/tables
+              
+ Customization: Edit breeze-config.js to adjust colors, speed, and appearance!
 */
 
-const container = document.getElementById('breeze-container');
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000000);
+import breezeConfig from './breeze-config.js';
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 60;
-
-const renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-container.appendChild(renderer.domElement);
-
-// Create 'breeze' particles
-const particleCount = 3500;
-const geometry = new THREE.BufferGeometry();
-const positions = [];
-const velocities = [];
-
-for (let i = 0; i < particleCount; i++) {
-    const x = (Math.random() - 0.5) * 200;
-    const y = (Math.random() - 0.5) * 100;
-    const z = (Math.random() - 0.5) * 200;
-    positions.push(x, y, z);
-    velocities.push(
-        0.2 + Math.random() * 0.05, // x velocity (breeze direction)
-        (Math.random() - 0.5) * 0.15, // y velocity (turbulence)
-        (Math.random() - 0.5) * 0.05  // z velocity (turbulence)
-    );
+// Check if THREE.js is loaded
+if (typeof THREE === 'undefined') {
+    console.error('THREE.js not loaded! Breeze animation cannot start.');
+    throw new Error('THREE.js is required for breeze animation');
 }
 
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+const container = document.getElementById('breeze-container');
+if (!container) {
+    console.error('breeze-container not found!');
+    throw new Error('breeze-container element is missing');
+}
+
+console.log('Starting breeze initialization...');
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(breezeConfig.backgroundColor);
+
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.2, 1000);
+camera.position.z = 60;
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.domElement.style.display = 'block';
+renderer.domElement.style.position = 'absolute';
+renderer.domElement.style.top = '0';
+renderer.domElement.style.left = '0';
+renderer.domElement.style.width = '100%';
+renderer.domElement.style.height = '100%';
+container.appendChild(renderer.domElement);
+
+console.log('Breeze renderer appended to container');
+
+// Create realistic 'wind streaks' using curved lines
+// Adjust particle count based on device for performance
+const isMobile = window.innerWidth <= 767;
+const isTablet = window.innerWidth > 767 && window.innerWidth <= 1024;
+const windStreakCount = isMobile ? Math.floor(breezeConfig.streakCount * 0.5) : 
+                        isTablet ? Math.floor(breezeConfig.streakCount * 0.75) : 
+                        breezeConfig.streakCount;
+const lines = [];
+const windColors = breezeConfig.colors;
+
+console.log(`Wind streaks: ${windStreakCount} (Mobile: ${isMobile}, Tablet: ${isTablet})`);
+
+function createCurvedWindStreak() {
+    // Start off-screen on the LEFT side (beyond left boundary)
+    const leftBoundary = -(breezeConfig.areaWidth / 2);
+    const startX = leftBoundary - 20 - Math.random() * 30; // Start well off the left edge
+    
+    // Vertical position can be anywhere from top to bottom
+    const startY = (Math.random() - 0.5) * breezeConfig.areaHeight;
+    const startZ = (Math.random() - 0.5) * breezeConfig.areaDepth;
+    
+    // Wind streak length
+    const streakLength = breezeConfig.minStreakLength + 
+                        Math.random() * (breezeConfig.maxStreakLength - breezeConfig.minStreakLength);
+    
+    // Create control points for smooth curve
+    const curvePoints = [];
+    const segments = 8; // More segments = smoother curve
+    
+    for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        const x = startX - (streakLength * t); // Tail extends further left
+        // Add gentle wave-like motion to Y and Z
+        const y = startY + Math.sin(t * Math.PI * 2) * (Math.random() * 2 - 1);
+        const z = startZ + Math.cos(t * Math.PI * 1.5) * (Math.random() * 1.5 - 0.75);
+        curvePoints.push(new THREE.Vector3(x, y, z));
+    }
+    
+    // Create curve from points
+    const curve = new THREE.CatmullRomCurve3(curvePoints);
+    const points = curve.getPoints(50); // Get more points for smooth rendering
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    
+    // Random color from palette with transparency
+    const colorChoice = windColors[Math.floor(Math.random() * windColors.length)];
+    const material = new THREE.LineBasicMaterial({
+        color: colorChoice,
+        transparent: true,
+        opacity: breezeConfig.minOpacity + 
+                Math.random() * (breezeConfig.maxOpacity - breezeConfig.minOpacity),
+        linewidth: 1
+    });
+    
+    const line = new THREE.Line(geometry, material);
+    
+    // Store properties for animation
+    line.userData = {
+        velocityX: breezeConfig.minVelocityX + 
+                  Math.random() * (breezeConfig.maxVelocityX - breezeConfig.minVelocityX),
+        velocityY: (Math.random() - 0.5) * breezeConfig.turbulenceY,
+        velocityZ: (Math.random() - 0.5) * breezeConfig.turbulenceZ,
+        streakLength: streakLength,
+        originalOpacity: material.opacity,
+        wavePhase: Math.random() * Math.PI * 2, // Random starting phase for wave
+        waveSpeed: 0.02 + Math.random() * 0.025  // Random wave animation speed
+    };
+    
+    return line;
+}
+
+// Spawn all wind streaks distributed across the screen for continuous loop effect
+for (let i = 0; i < windStreakCount; i++) {
+    const line = createCurvedWindStreak();
+    // Spread them evenly across the entire viewport width for continuous wind
+    const positions = line.geometry.attributes.position.array;
+    const spreadDistance = breezeConfig.areaWidth * 2; // Cover twice the area for continuous flow
+    const evenSpacing = (i / windStreakCount) * spreadDistance;
+    
+    for (let j = 0; j < positions.length; j += 3) {
+        positions[j] += evenSpacing; // Evenly distribute from left edge to right
+    }
+    line.geometry.attributes.position.needsUpdate = true;
+    lines.push(line);
+    scene.add(line);
+}
 
 /*
- --- Neutral & Digital Greys ---
-0x222226, // Dark grey
-0x44475a, // Soft dark blue-grey
-0x2d2d2d, // Charcoal grey
-0x3a3f4b, // Slate grey
-
- --- Blues & Teals ---
-0x334455, // Blue-grey
-0x2980b9, // Electric blue (Spider-Verse)
-0x66ccff, // Light blue
-0x00ffd0, // Neon teal
-0x2c3e4f, // Teal-grey
-
- --- Purples & Magentas ---
-0x3a2e4f, // Purple-grey
-0x8e44ad, // Deep magenta (Spider-Verse)
-0x9b59b6, // Soft purple
-0xff2d55, // Hot pink (Spider-Verse accent)
-
- --- Accent Variation ---
-0xffc300, // Vivid yellow (Spider-Verse accent)
-0xfffafa, // Off-white
-0xffffff, // White (for sparkle/highlight)
-0xff6f61, // Coral
-0x00ffea, // Aqua
-0x00ff99, // Mint green
-0x00b894, // Green-teal
+ --- Color Palette Reference ---
+ 
+ Neutral & Digital Greys:
+ 0x222226, 0x44475a, 0x2d2d2d, 0x3a3f4b
+ 
+ Blues & Teals:
+ 0x334455, 0x2980b9, 0x66ccff, 0x00ffd0, 0x2c3e4f
+ 
+ Purples & Magentas:
+ 0x3a2e4f, 0x8e44ad, 0x9b59b6, 0xff2d55
+ 
+ Accent Variations:
+ 0xffc300, 0xfffafa, 0xffffff, 0xff6f61, 0x00ffea, 0x00ff99, 0x00b894
 */
-
-const material = new THREE.PointsMaterial({
-    color: 0xff2d55,
-    size: 0.2,
-    innerWidth: 25,
-    transparent: true,
-    opacity: 0.5
-});
-
-const particles = new THREE.Points(geometry, material);
-scene.add(particles);
 
 function animate() {
     requestAnimationFrame(animate);
 
-    const positions = geometry.attributes.position.array;
-    for (let i = 0; i < particleCount; i++) {
-        positions[i * 3] += velocities[i * 3];     // x
-        positions[i * 3 + 1] += velocities[i * 3 + 1]; // y
-        positions[i * 3 + 2] += velocities[i * 3 + 2]; // z
-
-        // Reset particle if it goes out of bounds
-        if (positions[i * 3] > 100) {
-            positions[i * 3] = -100;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
+    // Animate each wind streak
+    lines.forEach((line, index) => {
+        const positions = line.geometry.attributes.position.array;
+        const userData = line.userData;
+        
+        // Update wave phase for flowing effect
+        userData.wavePhase += userData.waveSpeed;
+        
+        // Move all points of the curved line (LEFT to RIGHT)
+        let isOutOfBounds = false;
+        let lastX = -Infinity;
+        
+        for (let i = 0; i < positions.length; i += 3) {
+            positions[i] += userData.velocityX;     // x (moving right)
+            positions[i + 1] += userData.velocityY + Math.sin(userData.wavePhase + i * 0.1) * 0.02; // y with wave
+            positions[i + 2] += userData.velocityZ + Math.cos(userData.wavePhase + i * 0.1) * 0.02; // z with wave
+            
+            // Track the rightmost point (last point in the streak)
+            if (positions[i] > lastX) {
+                lastX = positions[i];
+            }
         }
-    }
-    geometry.attributes.position.needsUpdate = true;
+        
+        // Check if the LAST point (tail) has gone off the RIGHT side
+        const rightBoundary = 250; // Right edge of visible area (increased for wider spread)
+        if (lastX > rightBoundary) {
+            isOutOfBounds = true;
+        }
+        
+        // Reset wind streak if it goes out of bounds on the right
+        if (isOutOfBounds) {
+            // Remove old line and create new one starting from the left
+            scene.remove(line);
+            const newLine = createCurvedWindStreak();
+            lines[index] = newLine;
+            scene.add(newLine);
+        } else {
+            line.geometry.attributes.position.needsUpdate = true;
+        }
+    });
 
-    // Optional: rotate the whole system for a 3D effect
-    particles.rotation.y += 0.0000000001;
-    particles.rotation.x += 0.0000000001;
-    particles.rotation.z += 0.0000000001;
+    // Subtle camera sway for depth perception
+    if (breezeConfig.cameraSwaySpeed > 0) {
+        camera.position.x = Math.sin(Date.now() * breezeConfig.cameraSwaySpeed) * breezeConfig.cameraSwayAmount;
+        camera.position.y = Math.cos(Date.now() * breezeConfig.cameraSwaySpeed * 1.5) * (breezeConfig.cameraSwayAmount * 0.75);
+        camera.lookAt(scene.position);
+    }
 
     renderer.render(scene, camera);
 }
 
 animate();
 
+console.log('Breeze animation started! Canvas size:', renderer.domElement.width, 'x', renderer.domElement.height);
+console.log('Wind streaks created:', lines.length);
+
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Pause animation when page is not visible (battery saving)
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Page is hidden, could pause animation here if needed
+    }
 });
