@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/KzyINdex.html"
+    }
+  ],
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null
+}
