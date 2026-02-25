@@ -9,6 +9,10 @@
 import breezeConfig from './breeze-config.js';
 
 const container = document.getElementById('breeze-container');
+if (!container) {
+    console.error('breeze-container not found!');
+}
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(breezeConfig.backgroundColor);
 
@@ -17,17 +21,25 @@ camera.position.z = 60;
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.domElement.style.display = 'block';
+renderer.domElement.style.position = 'absolute';
+renderer.domElement.style.top = '0';
+renderer.domElement.style.left = '0';
 container.appendChild(renderer.domElement);
 
+console.log('Breeze animation initialized');
+
 // Create realistic 'wind streaks' using curved lines
-// Reduce particle count on mobile devices for better performance
+// Adjust particle count based on device for performance
 const isMobile = window.innerWidth <= 767;
 const isTablet = window.innerWidth > 767 && window.innerWidth <= 1024;
-const windStreakCount = isMobile ? Math.floor(breezeConfig.streakCount * 0.4) : 
-                        isTablet ? Math.floor(breezeConfig.streakCount * 0.7) : 
+const windStreakCount = isMobile ? Math.floor(breezeConfig.streakCount * 0.5) : 
+                        isTablet ? Math.floor(breezeConfig.streakCount * 0.75) : 
                         breezeConfig.streakCount;
 const lines = [];
 const windColors = breezeConfig.colors;
+
+console.log(`Wind streaks: ${windStreakCount} (Mobile: ${isMobile}, Tablet: ${isTablet})`);
 
 function createCurvedWindStreak() {
     // Start off-screen on the LEFT side (beyond left boundary)
