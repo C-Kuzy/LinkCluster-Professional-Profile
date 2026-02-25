@@ -141,7 +141,7 @@ a {
     background: linear-gradient(90deg,
             rgba(241, 241, 241, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #645CAA;
+        transparent /*#645CAA*/;
     color: white;
 }
 
@@ -149,7 +149,7 @@ a {
     background: linear-gradient(90deg,
             rgba(241, 241, 241, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #d13b86;
+        transparent /*#d13b86*/;
     color: white;
 }
 
@@ -157,7 +157,7 @@ a {
     background: linear-gradient(90deg,
             rgba(241, 241, 241, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #cc0707dc;
+        transparent /*#cc0707dc*/;
     color: rgb(255, 255, 255);
 }
 
@@ -165,15 +165,7 @@ a {
     background: linear-gradient(90deg,
             rgba(241, 241, 241, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #5865F2;
-    color: white;
-}
-
-.link:nth-child(8) {
-    background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        #cc0707dc;
+        transparent /*#5865F2*/;
     color: white;
 }
 
