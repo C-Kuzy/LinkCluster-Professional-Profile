@@ -6,25 +6,25 @@
 
 export const breezeConfig = {
     // Wind Streak Appearance
-    streakCount: 1000,          // Number of wind streaks (higher = denser)
+    streakCount: 2000,          // Number of wind streaks (higher = denser)
                                 // Note: Auto-reduced to 50% on mobile, 75% on tablet for performance
-    minStreakLength: 3,         // Minimum length of wind streaks
-    maxStreakLength: 12,        // Maximum length of wind streaks
+    minStreakLength: 5,         // Minimum length of wind streaks (increased)
+    maxStreakLength: 18,        // Maximum length of wind streaks (increased)
     
     // Animation Speed
-    minVelocityX: 0.3,          // Minimum horizontal wind speed
-    maxVelocityX: 0.7,          // Maximum horizontal wind speed
-    turbulenceY: 0.2,           // Vertical turbulence (0 = none)
-    turbulenceZ: 0.1,           // Depth turbulence (0 = none)
+    minVelocityX: 0.2,          // Minimum horizontal wind speed (slowed for visibility)
+    maxVelocityX: 0.5,          // Maximum horizontal wind speed (slowed for visibility)
+    turbulenceY: 0.3,           // Vertical turbulence (increased)
+    turbulenceZ: 0.2,           // Depth turbulence (increased)
     
     // Visual Properties
     minOpacity: 0.4,            // Minimum transparency
     maxOpacity: 0.8,            // Maximum transparency (increased for visibility)
     
     // Area Coverage
-    areaWidth: 250,             // Horizontal spread
-    areaHeight: 150,            // Vertical spread
-    areaDepth: 250,             // Depth spread
+    areaWidth: 300,             // Horizontal spread (increased)
+    areaHeight: 200,            // Vertical spread (increased)
+    areaDepth: 300,             // Depth spread (increased)
     
     // Camera Movement
     cameraSwaySpeed: 0.0001,    // Speed of subtle camera movement (0 = none)

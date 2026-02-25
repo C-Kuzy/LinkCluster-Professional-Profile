@@ -110,15 +110,16 @@ function createCurvedWindStreak() {
     return line;
 }
 
-// Spawn all wind streaks off-screen to the left with staggered positions
+// Spawn all wind streaks distributed across the screen for continuous loop effect
 for (let i = 0; i < windStreakCount; i++) {
     const line = createCurvedWindStreak();
-    // Stagger them at different distances from the left edge
-    // This prevents them all from appearing at once
+    // Spread them evenly across the entire viewport width for continuous wind
     const positions = line.geometry.attributes.position.array;
-    const randomXOffset = Math.random() * breezeConfig.areaWidth;
+    const spreadDistance = breezeConfig.areaWidth * 2; // Cover twice the area for continuous flow
+    const evenSpacing = (i / windStreakCount) * spreadDistance;
+    
     for (let j = 0; j < positions.length; j += 3) {
-        positions[j] += randomXOffset; // Spread them out across the screen initially
+        positions[j] += evenSpacing; // Evenly distribute from left edge to right
     }
     line.geometry.attributes.position.needsUpdate = true;
     lines.push(line);
@@ -168,7 +169,7 @@ function animate() {
         }
         
         // Check if the LAST point (tail) has gone off the RIGHT side
-        const rightBoundary = 200; // Right edge of visible area
+        const rightBoundary = 250; // Right edge of visible area (increased for wider spread)
         if (lastX > rightBoundary) {
             isOutOfBounds = true;
         }
