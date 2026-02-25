@@ -3,6 +3,11 @@
   "version": "2.0.0",
   "description": "A customizable LinkTree alternative with animated wind background",
   "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "keywords": [
     "linktree",
     "portfolio",
@@ -10,9 +15,16 @@
     "animation"
   ],
   "author": "Connor Kouznetsov (C-Kuzy)",
-  "license": "SEE LICENSE IN ProfProfileTree.LICENSE",
+  "license": "SEE EULA LICENSE IN ProfProfileTree.LICENSE",
   "repository": {
     "type": "git",
     "url": "https://github.com/C-Kuzy/LinkCluster-Professional-Profile"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "terser": "^5.26.0"
+  },
+  "dependencies": {
+    "three": "^0.154.0"
   }
 }
