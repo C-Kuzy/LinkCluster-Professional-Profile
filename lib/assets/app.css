@@ -268,11 +268,6 @@ a {
     filter: invert(45%) sepia(100%) saturate(600%) hue-rotate(215deg) brightness(105%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
-.link:nth-child(8):hover img {
-    /* Pinterest Red #E60023 */
-    filter: invert(20%) sepia(100%) saturate(1000%) hue-rotate(340deg) brightness(100%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
-}
-
 /* Mobile Phones (Portrait & Landscape) */
 @media (max-width: 767px) {
     body { 
