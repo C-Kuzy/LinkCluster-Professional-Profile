@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { copyFileSync, mkdirSync, readdirSync } from 'fs';
 
 export default defineConfig({
   // Base public path
   base: './',
+  
+  // Set public directory to false since we're managing assets manually
+  publicDir: false,
   
   // Build configuration
   build: {
@@ -63,6 +67,27 @@ export default defineConfig({
             const indexHtml = bundle['KzyINdex.html'];
             if (indexHtml) {
               indexHtml.fileName = 'index.html';
+            }
+          }
+        },
+        {
+          name: 'copy-lib-assets',
+          writeBundle() {
+            // Copy lib/assets to dist/lib/assets after build
+            const srcDir = resolve(__dirname, 'lib/assets');
+            const destDir = resolve(__dirname, 'dist/lib/assets');
+            
+            try {
+              mkdirSync(destDir, { recursive: true });
+              const files = readdirSync(srcDir);
+              files.forEach(file => {
+                if (file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.svg')) {
+                  copyFileSync(resolve(srcDir, file), resolve(destDir, file));
+                }
+              });
+              console.log('✓ Copied lib/assets to dist/lib/assets');
+            } catch (err) {
+              console.error('Error copying assets:', err);
             }
           }
         }
