@@ -18,6 +18,7 @@
   *.html linguist-detectable=true
   *.css linguist-detectable=true
   *.js linguist-detectable=true
+  *.png linguist-detectable=true
 
  "Files This Repository is Restricing:"
   *.py linguist-detectable=false
@@ -35,7 +36,6 @@
   *.xlsx linguist-detectable=false
   *.pdf linguist-detectable=false
   *.svg linguist-detectable=false
-  *.png linguist-detectable=false
   *.jpg linguist-detectable=false
   *.jpeg linguist-detectable=false
   *.gif linguist-detectable=false
