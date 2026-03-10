@@ -1,10 +1,16 @@
+<div align="center">
+
 # LinkCluster Professional Profile
 
 A customizable, animated link aggregator for your professional online presence. Self-hosted alternative to traditional link management platforms — no ads, no subscriptions, just your links.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com)
 [![License](https://img.shields.io/badge/License-EULA-blue.svg)](./EULA.LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](./package.json)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com)
+[![Version](https://img.shields.io/badge/version-2.1.5-green.svg)](./package.json)
+
+</div>
+
+---
 
 ## Why This Exists
 
@@ -184,6 +190,8 @@ Licensed under EULA. See [EULA.LICENSE](./EULA.LICENSE) for details.
 
 ---
 
+<div align="center">
+
 **Built by [C-Kuzy](https://github.com/C-Kuzy)**
 
 Got questions or want to contribute? Open an issue on GitHub.
@@ -191,3 +199,5 @@ Got questions or want to contribute? Open an issue on GitHub.
 ---
 
 *For feature requests or bug reports, please open an issue on GitHub.*
+
+</div>
