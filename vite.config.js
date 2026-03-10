@@ -8,7 +8,7 @@ export default defineConfig({
   // Build configuration
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
+    designDir: 'design',
     
     // Enable minification
     minify: 'terser',
