@@ -133,6 +133,14 @@ a {
     border-radius: 15px;
     padding: 0 20px;
     border: 2px solid transparent;
+    
+    /* Frosted glass effect */
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    
+    /* Drop shadow for depth */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3),
+                0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .greetings {
@@ -194,64 +202,72 @@ a {
 
 .link:nth-child(1) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#1a8d1a*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: rgb(255, 255, 255); /* Title Text Color */
 }
 
 .link:nth-child(2) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#0077B5*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: white; /* Title Text Color */
 }
 
 .link:nth-child(3) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#a3a2a2*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: white; /* Title Text Color */
 }
 
 .link:nth-child(4) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#645CAA*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: white;
 }
 
 .link:nth-child(5) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#d13b86*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: white;
 }
 
 .link:nth-child(6) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#cc0707dc*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: rgb(255, 255, 255);
 }
 
 .link:nth-child(7) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
-            rgba(113, 113, 113, 0.3) 100%),
-        transparent /*#5865F2*/;
+            rgba(241, 241, 241, 0.15) 30%,
+            rgba(113, 113, 113, 0.35) 100%),
+        rgba(255, 255, 255, 0.05);
     color: white;
 }
 
 .link:hover {
-    filter: drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
     transform: scale(1.15);
-    border: 2px solid var(--hover-ring-color, #00d4ff);
+    border: 2px solid var(--hover-ring-color, #ffffff);
+    
+    /* Enhanced shadow on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(0, 212, 255, 0.15);
+    
+    /* Slightly more blur on hover */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
 
 /* Customizable hover ring colors for each link */
