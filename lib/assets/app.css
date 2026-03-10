@@ -17,21 +17,13 @@
 }
 
 @keyframes blink {
-    0%, 50% {
-        opacity: 1;
-    }
-    50.01%, 100% {
-        opacity: 0;
-    }
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
 }
 
 @keyframes breathe {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 
 /* Scanning effect for word review */
@@ -43,7 +35,7 @@
 
 .scannable-word.scanning {
     text-decoration: underline;
-    text-decoration-color: #00d4ff;
+    text-decoration-color: #ff0000;
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
     animation: breatheUnderline 1s ease-in-out;
@@ -54,28 +46,16 @@
 }
 
 @keyframes breatheUnderline {
-    0% {
-        text-decoration-color: rgba(0, 212, 255, 0);
-        text-shadow: 0 0 0px rgba(0, 212, 255, 0);
-    }
-    20% {
-        text-decoration-color: rgba(0, 212, 255, 1);
-        text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
-    }
-    80% {
-        text-decoration-color: rgba(0, 212, 255, 1);
-        text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
-    }
-    100% {
-        text-decoration-color: rgba(0, 212, 255, 0.7);
-        text-shadow: 0 0 4px rgba(0, 212, 255, 0.4);
-    }
+    0% { text-decoration-color: rgba(0, 212, 255, 0); }
+    20% { text-decoration-color: rgb(255, 0, 0); }
+    80% { text-decoration-color: rgb(255, 0, 0); }
+    100% { text-decoration-color: rgba(255, 0, 0, 0.7); }
 }
 
 @keyframes fadeOutUnderline {
     from {
-        text-decoration-color: rgba(0, 212, 255, 0.7);
-        text-shadow: 0 0 4px rgba(0, 212, 255, 0.4);
+        text-decoration-color: rgb(255, 0, 119);
+        text-shadow: 0 0 4px rgb(0, 255, 60);
     }
     to {
         text-decoration-color: rgba(0, 212, 255, 0);
@@ -164,9 +144,13 @@ a {
     padding: 0 15px;
     white-space: nowrap;
     overflow: visible;
+    min-height: clamp(1.5rem, 6vw, 2.95rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.greetings h1 {
+.greetings h2 {
     font-family: 'Roboto', sans-serif;
     color: white;
     margin: 0;
@@ -183,6 +167,10 @@ a {
     color: rgb(255, 255, 255);
     padding: 0 20px;
     line-height: 1.6;
+    min-height: calc(clamp(0.875rem, 3vw, 1.125rem) * 1.6 * 2.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .link span {
