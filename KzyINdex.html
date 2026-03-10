@@ -15,7 +15,7 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title>C-Kuzy | Digital LinkCluster</title>
+    <title>ProfLinkCluster</title>
 
     <!-- Load Three.js first -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
@@ -25,6 +25,9 @@
 
     <!-- Load core rendering module -->
     <script type="module" defer src="lib/core/renderer.js"></script>
+
+    <!-- Load typewriter effect module -->
+    <script type="module" defer src="lib/effects/typewriter.js"></script>
 
     <!-- Application styles -->
     <link rel="stylesheet" href="lib/assets/app.css" />
@@ -40,15 +43,10 @@
                  alt = "Click Link"/>
         </div>
         <div class = "greetings">
-            <h2 style="color: #ffffff;">Connor Kouznetsov</h1>
+            <h1 id="name-text"></h1>
         </div>
         <div class = "about">
-            <div>
-                Incoming SWE @ MetLife | xAIE @ Equitus.ai
-            </div>
-            <div>
-                CSE @ University of South Florida
-            </div>
+            <div id="description-text"></div>
         </div>
         <div class = "LinkCluster Links" 
              id = "links">
