@@ -89,6 +89,7 @@ main {
     justify-content: center;
     padding: 5px 0;
     max-width: 100%;
+    touch-action: manipulation;
 }
 
 a {
@@ -361,8 +362,26 @@ a {
         margin: 1rem auto 1.25rem;
     }
     
+    /* Reduce name size on mobile to prevent overflow, keep on one line */
+    .greetings {
+        font-size: clamp(1rem, 3.8vw, 1.5rem);
+        min-height: clamp(1rem, 3.8vw, 1.5rem);
+        padding: 0 8px;
+    }
+    
+    .greetings h2 {
+        font-size: inherit;
+    }
+    
+    .about {
+        font-size: clamp(0.8rem, 2.8vw, 1rem);
+        min-height: calc(clamp(0.8rem, 2.8vw, 1rem) * 1.6 * 2.2);
+        padding: 0 10px;
+    }
+    
     .link {
         margin: 0.4rem 0;
+        touch-action: manipulation;
     }
     
     /* Better touch targets on mobile */
