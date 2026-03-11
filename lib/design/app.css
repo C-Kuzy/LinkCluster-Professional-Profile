@@ -259,7 +259,12 @@ a {
 .link:hover {
     transform: scale(1.15);
     border: 2px solid var(--hover-ring-color, #ffffff);
- 
+    
+    /* Enhanced shadow on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(0, 212, 255, 0.15);
+    
     /* Slightly more blur on hover */
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
