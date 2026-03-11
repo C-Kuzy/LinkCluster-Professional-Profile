@@ -303,7 +303,6 @@ a {
 @media (hover: none) and (pointer: coarse) {
     .link:hover {
         transform: none;
-        border: none;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3),
                     0 2px 4px rgba(0, 0, 0, 0.2);
     }
@@ -311,6 +310,7 @@ a {
     .link:active {
         transform: scale(0.98);
         opacity: 0.85;
+        border: 2px solid var(--hover-ring-color, #ffffff);
     }
 }
 
