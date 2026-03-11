@@ -12,6 +12,15 @@ A customizable, animated link aggregator for your professional online presence. 
 
 ---
 
+**📸 Preview for GitHub Viewers:**
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/c6cae110-cd67-4116-81a5-69d969b84f43" alt="Custom LinkCluster - Newer Linktree" width="800">
+  <p><i>Custom LinkCluster User Viewpoint</i></p>
+</div>
+
+
+
 ## Why This Exists
 
 Tired of paying monthly subscriptions just to share your links? Want something you actually own and control? LinkCluster gives you a beautiful, animated link hub that's completely yours — host it anywhere, customize everything, zero ongoing costs.
