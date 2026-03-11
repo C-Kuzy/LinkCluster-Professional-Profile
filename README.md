@@ -27,7 +27,7 @@ Tired of paying monthly subscriptions just to share your links? Want something y
 
 ## Features
 
-- **Ad-free forever** — Because nobody likes ads on their professional profile
+- **AD-FREE FOREVER** — Because nobody likes ads on their professional profile
 - **Animated wind effects** — Smooth Three.js particle background
 - **Fully customizable** — Change colors, fonts, layout, everything
 - **Mobile responsive** — Looks great on any device
