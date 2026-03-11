@@ -87,7 +87,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5px 0;
+    padding: 2.5px 0;
     max-width: 100%;
     touch-action: manipulation;
 }
@@ -113,7 +113,7 @@ a {
     height: clamp(150px, 30vw, 230px);
     aspect-ratio: 1;
     border-radius: 50%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.65rem;
 }
 
 .links {
@@ -147,7 +147,7 @@ a {
     font-family: 'Roboto', sans-serif;
     font-size: clamp(1.5rem, 6vw, 2.95rem);
     font-weight: 900;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     color: white;
     text-align: center;
     padding: 0 15px;
@@ -171,7 +171,7 @@ a {
     font-family: 'Roboto', sans-serif;
     font-size: clamp(0.875rem, 3vw, 1.125rem);
     font-weight: 700;
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.65rem;
     text-align: center;
     color: rgb(255, 255, 255);
     padding: 0 20px;
@@ -303,12 +303,14 @@ a {
 @media (hover: none) and (pointer: coarse) {
     .link:hover {
         transform: none;
-        filter: none;
+        border: none;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3),
+                    0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .link:active {
         transform: scale(0.98);
-        filter: brightness(0.9);
+        opacity: 0.85;
     }
 }
 
@@ -369,13 +371,13 @@ a {
     }
     
     main {
-        padding: 10px 0;
+        padding: 5px 0;
     }
     
     .logoContainer {
         width: 140px;
         height: 140px;
-        margin: 1rem auto 1.25rem;
+        margin: 0.5rem auto 0.4rem;
     }
     
     /* Reduce name size on mobile to prevent overflow, keep on one line */
@@ -383,6 +385,7 @@ a {
         font-size: clamp(1rem, 3.8vw, 1.5rem);
         min-height: clamp(1rem, 3.8vw, 1.5rem);
         padding: 0 8px;
+        margin-bottom: 0.25rem;
     }
     
     .greetings h2 {
@@ -393,6 +396,7 @@ a {
         font-size: clamp(0.8rem, 2.8vw, 1rem);
         min-height: calc(clamp(0.8rem, 2.8vw, 1rem) * 1.6 * 2.2);
         padding: 0 10px;
+        margin-bottom: 0.5rem;
     }
     
     .link {
@@ -400,10 +404,10 @@ a {
         touch-action: manipulation;
     }
     
-    /* Better touch targets on mobile */
+    /* Subtle touch feedback on mobile - no harsh effects */
     .link:active {
-        transform: scale(0.97);
-        opacity: 0.9;
+        transform: scale(0.98);
+        opacity: 0.85;
     }
 }
 
