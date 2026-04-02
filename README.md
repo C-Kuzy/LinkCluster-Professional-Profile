@@ -4,89 +4,105 @@
 
 A customizable, animated link aggregator for your professional online presence. Self-hosted alternative to traditional link management platforms — no ads, no subscriptions, just your links.
 
-[![License](https://img.shields.io/badge/License-EULA-blue.svg)](./EULA.LICENSE)
+[![License](https://img.shields.io/badge/License-EULA-blue.svg)](./EULA-LICENSE)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com)
-[![Version](https://img.shields.io/badge/version-2.1.5-green.svg)](./package.json)
+[![Version](https://img.shields.io/badge/version-2.1.0-green.svg)](./package.json)
+[![Built with Vite](https://img.shields.io/badge/Built%20with-Vite-646CFF.svg)](https://vitejs.dev/)
 
 </div>
 
 ---
 
-**📸 Preview for GitHub Viewers:**
+## 📸 Preview
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/c6cae110-cd67-4116-81a5-69d969b84f43" alt="Custom LinkCluster - Newer Linktree" width="800">
-  <p><i>Custom LinkCluster User Viewpoint</i></p>
+  <img src="https://github.com/user-attachments/assets/c6cae110-cd67-4116-81a5-69d969b84f43" alt="LinkCluster Professional Profile" width="800">
+  <p><i>Professional link hub with animated particle background</i></p>
 </div>
 
+---
 
+## ✨ Features
 
-## Why This Exists
+- **🚫 AD-FREE FOREVER** — No ads, no tracking, no subscriptions
+- **🎨 Animated Effects** — Smooth Three.js particle background with breeze effects
+- **⚡ Typewriter Animation** — Dynamic name and description typing effect
+- **📜 EULA Modal** — Professional "jet-away" animation revealing your terms
+- **🎯 Fully Customizable** — Colors, fonts, layout, animations — everything
+- **📱 Mobile Responsive** — Optimized for all devices with adaptive performance
+- **🔒 Security Hardened** — CSP headers, XSS protection, content security
+- **⚙️ Self-Hosted** — Deploy to Vercel, Netlify, or any static host
+- **🌐 Zero Dependencies** — Just Three.js for animations, pure vanilla JS
+- **♿ Accessible** — Semantic HTML and proper ARIA attributes
 
-Tired of paying monthly subscriptions just to share your links? Want something you actually own and control? LinkCluster gives you a beautiful, animated link hub that's completely yours — host it anywhere, customize everything, zero ongoing costs.
+---
 
-## Features
+## 🚀 Quick Start
 
-- **AD-FREE FOREVER** — Because nobody likes ads on their professional profile
-- **Animated wind effects** — Smooth Three.js particle background
-- **Fully customizable** — Change colors, fonts, layout, everything
-- **Mobile responsive** — Looks great on any device
-- **Self-hosted** — Deploy to Vercel, Netlify, or anywhere you want
-- **Zero vendor lock-in** — It's your code, do whatever you want with it
+### Option 1: Deploy to Vercel (Recommended)
 
-## Quick Start
-
-### Deploy to Vercel (Easiest)
-
-1. Fork this repository
-2. Head to [vercel.com](https://vercel.com) and create a new project
+1. **Fork this repository**
+2. Visit [vercel.com](https://vercel.com) and create a new project
 3. Import your forked repository
-4. Click deploy and you're done
+4. Click deploy — done! 🎉
 
-### Local Development
+Your LinkCluster will be live at `https://your-project.vercel.app`
+
+### Option 2: Local Development
 
 ```bash
-git clone https://github.com/yourusername/LinkCluster-Professional-Profile.git
+# Clone the repository
+git clone https://github.com/C-Kuzy/LinkCluster-Professional-Profile.git
 cd LinkCluster-Professional-Profile
 
-# Start a local server (choose one):
-python3 -m http.server 8000
-# or
-npx serve
-# or
-php -S localhost:8000
+# Install dependencies
+npm install
 
-# Visit: http://localhost:8000/KzyINdex.html
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 LinkCluster-Professional-Profile/
-├── KzyINdex.html              # Main HTML file
+├── KzyINdex.html              # Main HTML entry point
 ├── lib/
-│   ├── assets/
-│   │   └── app.css            # Styles and responsive design
+│   ├── assets/                # Images and icons
+│   │   └── LinkCluster.png
 │   ├── core/
-│   │   └── renderer.js        # Link rendering
+│   │   └── renderer.js        # Link rendering engine
 │   ├── data/
-│   │   └── links.js           # Link configuration
+│   │   ├── links.js           # Your link configuration
+│   │   └── EULA.html          # EULA content template
+│   ├── design/
+│   │   └── app.css            # Main stylesheet
 │   └── effects/
-│       ├── config.js          # Animation settings
-│       ├── visual.js          # Background animation
-│       └── typewriter.js      # Text effects
-├── package.json
-├── vercel.json
-└── README.md
+│       ├── eula.js            # EULA modal & jet-away animation
+│       ├── typewriter.js      # Typewriter text effect
+│       └── visual.js          # Three.js particle background
+├── package.json               # Dependencies & scripts
+├── vite.config.js             # Build configuration
+├── vercel.json                # Deployment config with security headers
+├── EULA-LICENSE               # License agreement
+└── README.md                  # You are here
 ```
 
-## Customization
+---
 
-Here's how to make it yours:
+## 🎨 Customization Guide
 
-### Update Your Links
+### 1. Update Your Links
 
-Edit `lib/data/links.js` and add your own links:
+Edit `lib/data/links.js`:
 
 ```javascript
 export const links = [
@@ -98,115 +114,218 @@ export const links = [
     {
         name: "LinkedIn",
         link: "https://linkedin.com/in/yourprofile",
-        image: "https://cdn.example.com/linkedin-icon.png",
+        image: "https://cdn.iconfinder.com/data/icons/logos/64/linkedin-icon.png",
     },
-    // Add as many as you need
+    {
+        name: "GitHub",
+        link: "https://github.com/yourusername",
+        image: "https://cdn.iconfinder.com/data/icons/logos/64/github-icon.png",
+    },
 ];
-```
 
-### Personalize Your Info
-
-Open `KzyINdex.html` and update:
-- Your profile photo URL
-- Your name and title
-- Your description
-
-### Style It Your Way
-
-Edit `lib/assets/app.css` to customize:
-- Colors and gradients
-- Fonts and typography
-- Button styles
-- Hover effects
-- Everything visual
-
-### Tweak the Animation
-
-Open `lib/effects/config.js` to adjust:
-
-```javascript
-export const breezeConfig = {
-    streakCount: 3000,      // More = denser animation
-    minVelocityX: 0.2,      // Speed of particles
-    colors: [               // Your color palette
-        0xff2d55,           // Hot pink
-        0x8e44ad,           // Purple
-        0x2980b9,           // Blue
-        // Add your own hex colors
-    ],
-};
-```
-
-### Customize the Typewriter Effect
-
-In `lib/effects/typewriter.js`, change the text and timing:
-
-```javascript
-const typewriterConfig = {
+export const metadata = {
     name: "Your Name",
     description: "Your Title<br>Your Organization",
-    nameSpeed: 80,          // Faster = lower number
-    descriptionSpeed: 40,
 };
-All these platforms offer free hosting with SSL:
+```
 
-| Platform | Cost | Custom Domain | Deploy Time |
-|----------|------|---------------|-------------|
-| Vercel | Free | ✓ | ~2 min |
-| Netlify | Free | ✓ | ~3 min |
-| GitHub Pages | Free | ✓ | ~5 min |
-| Cloudflare Pages | Free | ✓ | ~3 min |
+### 2. Customize Styling
 
-### Netlify
+Edit `lib/design/app.css` to change:
+
+- **Colors**: Update CSS custom properties for link backgrounds
+- **Fonts**: Change `font-family` declarations (currently uses Roboto & Montserrat)
+- **Link Styles**: Modify `.link` classes for button appearance
+- **Hover Effects**: Adjust `.link:hover` for interactive states
+- **Footer**: Customize `.enhanced-footer` styling
+
+### 3. Adjust Animations
+
+**Background Particles** (`lib/effects/visual.js`):
+```javascript
+// Modify particle settings
+particleCount: 3000,
+particleSize: 0.1,
+velocity: { x: 0.5, y: 0.2 },
+colors: [0xff2d55, 0x8e44ad, 0x2980b9]
+```
+
+**Typewriter Effect** (`lib/effects/typewriter.js`):
+```javascript
+// Speed and timing
+nameSpeed: 80,           // Lower = faster typing
+descriptionSpeed: 40,
+pauseBetween: 500        // Pause between name and description
+```
+
+**EULA Animation** (`lib/effects/eula.js`):
+- Jet-away effect automatically calculates element trajectories
+- Modal transition timing: 800ms cubic-bezier
+- Customize colors by changing CSS `.eula-modal` styles
+
+### 4. Update EULA Content
+
+Edit `lib/data/EULA.html` to customize your license agreement:
+- Copyright information
+- Terms and conditions
+- Attribution requirements
+- Usage restrictions
+
+### 5. Change Profile Photo
+
+In `KzyINdex.html`, update the logo image source:
+```html
+<img class="logo" 
+     src="https://your-image-url.com/photo.png"
+     alt="Your Name"/>
+```
+
+---
+
+## 🌍 Deployment Options
+
+All these platforms offer free hosting with automatic SSL:
+
+| Platform | Cost | Custom Domain | Build Time | Features |
+|----------|------|---------------|------------|----------|
+| **Vercel** | Free | ✓ | ~2 min | Edge network, auto-preview |
+| **Netlify** | Free | ✓ | ~3 min | Forms, functions available |
+| **GitHub Pages** | Free | ✓ | ~5 min | GitHub integration |
+| **Cloudflare Pages** | Free | ✓ | ~3 min | CF network, analytics |
+
+### Vercel Deployment
+
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify Deployment
 
 ```bash
 npm install -g netlify-cli
-netlify deploy
+npm run build
+netlify deploy --prod --dir=dist
 ```
 
 ### GitHub Pages
 
-Just push to a `gh-pages` branch or configure it in your repo settings.
+1. Build the project: `npm run build`
+2. Push `dist/` folder to `gh-pages` branch
+3. Enable GitHub Pages in repository settings
 
-## Pro Tips
+---
 
-**SEO:** Update the meta tags in `KzyINdex.html` for better search visibility and social sharing.
+## 🔒 Security Features
 
-**Performance:** The background animation automatically scales down on mobile to keep things smooth. No configuration needed.
+This project implements multiple security layers:
 
-**Icons:** Use high-quality icon CDNs like Iconfinder or Flaticon for your link buttons.
+### HTTP Security Headers (via `vercel.json`)
+- **X-Content-Type-Options**: Prevents MIME-type sniffing
+- **X-Frame-Options**: Blocks clickjacking attacks
+- **X-XSS-Protection**: Browser XSS filter enabled
+- **Referrer-Policy**: Controls referrer information
+- **Permissions-Policy**: Restricts camera, microphone, geolocation
 
-## Troubleshooting
+### Build Security (via `vite.config.js`)
+- **No source maps** in production
+- **Console removal** in production builds
+- **ASCII-only output** for better compatibility
+- **Safari 10 compatibility** fixes
+- **Aggressive minification** with Terser
 
-**Links not showing?**
-- Make sure you're running a local server (not just opening the HTML file)
-- Check the browser console for errors
-- Verify your `links.js` syntax
+### Content Security
+- External resources loaded from trusted CDNs only
+- No inline scripts in production builds
+- Asset integrity via content hashing
 
-**Animation looking weird?**
-- Confirm Three.js is loading from the CDN
-- Check if your browser supports WebGL
-- Try adjusting the particle count in config
+---
 
-**Mobile issues?**
-- Clear your cache
-- Test in device mode in browser dev tools
-- The viewport meta tag should be present in the HTML
+## 💡 Pro Tips
 
-## License
+**SEO Optimization:**
+- Update `<title>` and meta tags in `KzyINdex.html`
+- Add Open Graph tags for better social sharing
+- Include schema.org markup for rich results
 
-Licensed under EULA. See [EULA.LICENSE](./EULA.LICENSE) for details.
+**Performance:**
+- Background animation auto-scales on mobile devices
+- Images are lazy-loaded where possible
+- Three.js chunks are split for faster loading
+
+**Icon Resources:**
+- [Iconfinder](https://www.iconfinder.com/) - High-quality free icons
+- [Flaticon](https://www.flaticon.com/) - Extensive icon library
+- Use CDN URLs for faster loading
+
+**Custom Domain:**
+- All hosting platforms support custom domains
+- Configure DNS with CNAME record
+- SSL certificates are automatic and free
+
+---
+
+## 🐛 Troubleshooting
+
+### Links not showing?
+1. Ensure you're running a local server (not opening HTML file directly)
+2. Check browser console for errors (F12)
+3. Verify `links.js` exports are correct
+4. Confirm module paths in HTML are accurate
+
+### Animation issues?
+1. Verify Three.js is loading from CDN
+2. Check browser WebGL support
+3. Try reducing particle count in `visual.js`
+4. Clear browser cache and reload
+
+### Build errors?
+1. Update Node.js to v18+ and npm to v9+
+2. Delete `node_modules` and run `npm install` again
+3. Check for conflicting global packages
+4. Verify all file paths use forward slashes
+
+### EULA not displaying?
+1. Check that `lib/data/EULA.html` exists
+2. Verify fetch path in `eula.js` matches file location
+3. Check browser console for CORS errors
+4. Ensure modal div has class `eula-content`
+
+---
+
+## 📄 License
+
+This project is licensed under EULA (End User License Agreement).  
+See [EULA-LICENSE](./EULA-LICENSE) for full terms.
+
+**Key Points:**
+- ✅ Free to use, modify, and distribute
+- ✅ Attribution required in source files
+- ✅ Open-source compatible
+- ⚠️ Contact required for substantial use (>75%)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
 <div align="center">
 
-**Built by [C-Kuzy](https://github.com/C-Kuzy)**
+**Built with ❤️ by [C-Kuzy](https://github.com/C-Kuzy)**
 
-Got questions or want to contribute? Open an issue on GitHub.
+[Report Bug](https://github.com/C-Kuzy/LinkCluster-Professional-Profile/issues) · [Request Feature](https://github.com/C-Kuzy/LinkCluster-Professional-Profile/issues) · [Discussions](https://github.com/C-Kuzy/LinkCluster-Professional-Profile/discussions)
 
 ---
 
-*For feature requests or bug reports, please open an issue on GitHub.*
+© 2025 C-Kuzy Solutions. All rights reserved.
 
 </div>
