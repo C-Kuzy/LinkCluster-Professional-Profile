@@ -1,28 +1,42 @@
 {
   "name": "linkcluster-professional-profile",
-  "version": "2.0.0",
-  "description": "A customizable LinkTree alternative with animated wind background",
+  "version": "2.1.0",
+  "description": "A customizable, self-hosted link aggregator with animated background effects and EULA modal",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "linktree",
+    "linktree-alternative",
     "portfolio",
+    "link-aggregator",
     "three.js",
-    "animation"
+    "animation",
+    "self-hosted",
+    "professional-profile",
+    "biolink"
   ],
   "author": "Connor Kouznetsov (C-Kuzy)",
-  "license": "SEE EULA LICENSE IN ProfProfileTree.LICENSE",
+  "license": "SEE EULA-LICENSE FILE",
   "repository": {
     "type": "git",
     "url": "https://github.com/C-Kuzy/LinkCluster-Professional-Profile"
   },
+  "bugs": {
+    "url": "https://github.com/C-Kuzy/LinkCluster-Professional-Profile/issues"
+  },
+  "homepage": "https://github.com/C-Kuzy/LinkCluster-Professional-Profile#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "terser": "^5.26.0"
+    "vite": "^5.4.0",
+    "terser": "^5.31.0"
   },
   "dependencies": {
     "three": "^0.154.0"
