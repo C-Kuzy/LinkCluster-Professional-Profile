@@ -16,7 +16,7 @@ A customizable, animated link aggregator for your professional online presence. 
 ## 📸 Preview
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/c6cae110-cd67-4116-81a5-69d969b84f43" alt="LinkCluster Professional Profile" width="800">
+  <img src="https://github.com/user-attachments/assets/d0b8c6c8-052d-493e-b260-9ab635cf6be3" alt="LinkCluster Professional Profile" width="800">
   <p><i>Professional link hub with animated particle background</i></p>
 </div>
 
