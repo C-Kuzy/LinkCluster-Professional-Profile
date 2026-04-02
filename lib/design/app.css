@@ -458,7 +458,7 @@ main, .logoContainer, .greetings, .about, .links, .footer, .link {
 }
 
 .enhanced-footer p {
-    color: rgb(255, 255, 255);
+    color: rgb(199, 199, 199);
     font-size: clamp(0.65rem, 2vw, 0.85rem);
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
