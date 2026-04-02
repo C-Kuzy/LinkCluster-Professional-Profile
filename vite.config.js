@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import { copyFileSync, mkdirSync, readdirSync } from 'fs';
+import { copyFileSync, mkdirSync, readdirSync, existsSync } from 'fs';
 
 export default defineConfig({
   // Base public path
@@ -12,7 +12,6 @@ export default defineConfig({
   // Build configuration
   build: {
     outDir: 'dist',
-    designDir: 'design',
     
     // Enable minification
     minify: 'terser',
@@ -24,14 +23,17 @@ export default defineConfig({
         drop_debugger: true, // Remove debugger statements
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
         passes: 2, // Multiple passes for better compression
+        unsafe: false, // Disable unsafe optimizations for safety
       },
       mangle: {
         toplevel: true, // Mangle top-level variable names
         keep_classnames: false,
         keep_fnames: false,
+        safari10: true, // Safari 10 compatibility
       },
       format: {
         comments: false, // Strip all comments
+        ascii_only: true, // Escape Unicode characters for better compatibility
       },
     },
     
@@ -52,10 +54,10 @@ export default defineConfig({
         // Manual chunk splitting for better caching
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
+            if (id.includes('three')) {
+              return 'three';
+            }
             return 'vendor';
-          }
-          if (id.includes('three')) {
-            return 'three';
           }
         },
       },
@@ -63,7 +65,7 @@ export default defineConfig({
         {
           name: 'rename-index',
           generateBundle(options, bundle) {
-            // Rename KzyINdex.html to index.html for Vercel
+            // Rename KzyINdex.html to index.html for deployment
             const indexHtml = bundle['KzyINdex.html'];
             if (indexHtml) {
               indexHtml.fileName = 'index.html';
@@ -71,24 +73,41 @@ export default defineConfig({
           }
         },
         {
-          name: 'copy-lib-assets',
+          name: 'copy-lib-resources',
           writeBundle() {
-            // Copy lib/assets to dist/lib/assets after build
-            const srcDir = resolve(__dirname, 'lib/assets');
-            const destDir = resolve(__dirname, 'dist/lib/assets');
+            const copyDirs = [
+              { src: 'lib/assets', dest: 'dist/lib/assets' },
+              { src: 'lib/data', dest: 'dist/lib/data' },
+            ];
             
-            try {
-              mkdirSync(destDir, { recursive: true });
-              const files = readdirSync(srcDir);
-              files.forEach(file => {
-                if (file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.svg')) {
-                  copyFileSync(resolve(srcDir, file), resolve(destDir, file));
-                }
-              });
-              console.log('✓ Copied lib/assets to dist/lib/assets');
-            } catch (err) {
-              console.error('Error copying assets:', err);
-            }
+            copyDirs.forEach(({ src, dest }) => {
+              const srcDir = resolve(__dirname, src);
+              const destDir = resolve(__dirname, dest);
+              
+              if (!existsSync(srcDir)) {
+                console.warn(`⚠ Source directory not found: ${src}`);
+                return;
+              }
+              
+              try {
+                mkdirSync(destDir, { recursive: true });
+                const files = readdirSync(srcDir);
+                
+                files.forEach(file => {
+                  const srcFile = resolve(srcDir, file);
+                  const destFile = resolve(destDir, file);
+                  
+                  // Copy specific file types
+                  if (file.match(/\.(png|jpg|jpeg|svg|webp|gif|html|js)$/i)) {
+                    copyFileSync(srcFile, destFile);
+                  }
+                });
+                
+                console.log(`✓ Copied ${src} to ${dest}`);
+              } catch (err) {
+                console.error(`Error copying ${src}:`, err);
+              }
+            });
           }
         }
       ]
@@ -102,16 +121,26 @@ export default defineConfig({
     
     // Clear output directory before building
     emptyOutDir: true,
+    
+    // Target modern browsers for better optimization
+    target: 'es2020',
+    
+    // Chunk size warnings
+    chunkSizeWarningLimit: 600,
   },
   
   // Server configuration for local development
   server: {
     port: 3000,
     open: true,
+    strictPort: true,
+    host: 'localhost',
   },
   
   // Preview configuration
   preview: {
     port: 8080,
+    strictPort: true,
+    host: 'localhost',
   },
 });
