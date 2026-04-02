@@ -288,11 +288,11 @@ a {
 }
 
 .link:nth-child(5):hover {
-    --hover-ring-color: #e4405f; /* Instagram Pink */
+    --hover-ring-color: #ff0000; /* YouTube Red */
 }
 
 .link:nth-child(6):hover {
-    --hover-ring-color: #ff0000; /* YouTube Red */
+    --hover-ring-color: #e4405f; /* Instagram Pink */
 }
 
 .link:nth-child(7):hover {
@@ -350,13 +350,13 @@ a {
 }
 
 .link:nth-child(5):hover img {
-    /* Instagram Pink #e4405f */
-    filter: invert(40%) sepia(100%) saturate(600%) hue-rotate(320deg) brightness(110%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+    /* YouTube Red #ff0000 */
+    filter: invert(15%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(110%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
 .link:nth-child(6):hover img {
-    /* YouTube Red #ff0000 */
-    filter: invert(15%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(110%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
+    /* Instagram Pink #e4405f */
+    filter: invert(40%) sepia(100%) saturate(600%) hue-rotate(320deg) brightness(110%) drop-shadow(0px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
 .link:nth-child(7):hover img {
@@ -446,4 +446,146 @@ main, .logoContainer, .greetings, .about, .links, .footer, .link {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
+}
+
+/* Footer Styles */
+.enhanced-footer {
+    position: relative;
+    padding: 0;
+    margin-top: 0.65rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.enhanced-footer p {
+    color: rgb(255, 255, 255);
+    font-size: clamp(0.65rem, 2vw, 0.85rem);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+
+/* EULA Link with Glowing Effect - Matching UND-CONSTRUCT style */
+.eula-link {
+    color: #00d4ff;
+    text-decoration: underline;
+    font-size: inherit;
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: inline;
+    font-family: 'Roboto', sans-serif;
+}
+
+.eula-link:hover {
+    color: #ff0000;
+    text-shadow: 0 0 20px #00d4ff;
+    text-decoration: underline;
+}
+
+/* EULA Modal */
+.eula-modal {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: #00d4ff;
+    z-index: 9999;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: top 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-family: 'Courier New', monospace;
+    line-height: 1.8;
+}
+
+.eula-modal.active {
+    top: 0;
+}
+
+.eula-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.eula-content h1 {
+    color: #00d4ff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.copyright-info {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.copyright-info p {
+    color: #00d4ff;
+    margin: 5px 0;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 400;
+}
+
+.eula-content h2 {
+    color: #00d4ff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    text-align: left;
+}
+
+.eula-content p {
+    margin-bottom: 15px;
+    color: #00d4ff;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 400;
+    text-align: left;
+}
+
+.section-divider {
+    border-top: 1px dashed #333;
+    margin: 30px 0;
+}
+
+.list-item {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    color: #00d4ff;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.italic-indent {
+    font-style: italic;
+    margin-left: 20px;
+    color: #00d4ff;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Jet-Away Animation Elements */
+.jet-element {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Jet-away animation classes */
+@keyframes jetAway {
+    to {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+    }
+}
+
+.jet-away {
+    animation: jetAway 1s ease-out forwards;
 }
