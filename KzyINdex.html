@@ -21,6 +21,9 @@
     <!-- Load Three.js first -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
     
+    <!-- Load universal transition system -->
+    <script type="module" src="lib/effects/transitions.js"></script>
+    
     <!-- Load visual effects module -->
     <script type="module" src="lib/effects/visual.js"></script>
 
@@ -61,7 +64,10 @@
         </footer>
     </main>
     
-    <!-- EULA Modal - Content loaded dynamically from lib/data/eula-content.html -->
+    <!-- Universal transition overlay for all link animations -->
+    <div class="transition-overlay" id="transitionOverlay"></div>
+    
+    <!-- EULA Modal - Content loaded dynamically from lib/data/EULA.html -->
     <div class="eula-modal" id="eulaModal">
         <div class="eula-content">
             <!-- Content will be loaded by eula.js -->
