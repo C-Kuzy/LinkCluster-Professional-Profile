@@ -29,6 +29,9 @@
 
     <!-- Load typewriter effect module -->
     <script type="module" defer src="lib/effects/typewriter.js"></script>
+    
+    <!-- Load EULA and jet-away animation module -->
+    <script type="module" defer src="lib/effects/eula.js"></script>
 
     <!-- Application styles -->
     <link rel="stylesheet" href="lib/design/app.css" />
@@ -51,7 +54,19 @@
         <div class = "LinkCluster Links" 
              id = "links">
         </div>
+        
+        <!-- Footer with EULA Link -->
+        <footer class="enhanced-footer">
+            <p>© 2025 C-Kuzy Solutions — <a href="#" class="eula-link" id="eulaLink">EULA</a></p>
+        </footer>
     </main>
+    
+    <!-- EULA Modal - Content loaded dynamically from lib/data/eula-content.html -->
+    <div class="eula-modal" id="eulaModal">
+        <div class="eula-content">
+            <!-- Content will be loaded by eula.js -->
+        </div>
+    </div>
     </div>
 </body>
 </html>
