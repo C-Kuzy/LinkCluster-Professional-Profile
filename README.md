@@ -1,19 +1,20 @@
 <div align="center">
 
-# LinkCluster Professional Profile
+# **LINKCLUSTER PROFESSIONAL PROFILE**
 
 A customizable, animated link aggregator for your professional online presence. Self-hosted alternative to traditional link management platforms — no ads, no subscriptions, just your links.
 
 [![License](https://img.shields.io/badge/License-EULA-blue.svg)](./EULA-LICENSE)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com)
 [![Version](https://img.shields.io/badge/version-2.1.0-green.svg)](./package.json)
 [![Built with Vite](https://img.shields.io/badge/Built%20with-Vite-646CFF.svg)](https://vitejs.dev/)
+[![GitHub](https://img.shields.io/badge/Hosting-Github-red.svg)](https://github.com)
 
+[![Deploy](https://vercel.com/button)](https://vercel.com)
 </div>
 
 ---
 
-## 📸 Preview
+## **PREVIEW**
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/d0b8c6c8-052d-493e-b260-9ab635cf6be3" alt="LinkCluster Professional Profile" width="800">
@@ -22,7 +23,7 @@ A customizable, animated link aggregator for your professional online presence. 
 
 ---
 
-## ✨ Features
+## **FEATURES**
 
 - **AD-FREE FOREVER** — No ads, no tracking, no subscriptions
 - **Animated Effects** — Smooth Three.js particle background with breeze effects
@@ -37,9 +38,9 @@ A customizable, animated link aggregator for your professional online presence. 
 
 ---
 
-## QUICK START
+## **QUICK START**
 
-### Option 1: Deploy to Vercel (Recommended)
+### Option #1: Deploy to Vercel (Recommended)
 
 1. **Fork this repository**
 2. Visit [vercel.com](https://vercel.com) and create a new project
@@ -48,7 +49,7 @@ A customizable, animated link aggregator for your professional online presence. 
 
 Your LinkCluster will be live at `https://your-project.vercel.app`
 
-### Option 2: Local Development
+### Option #2: Local Development
 
 ```bash
 # Clone the repository
@@ -70,7 +71,7 @@ npm run preview
 
 ---
 
-## PROJECT STRUCTURE
+## **PROJECT STRUCTURE**
 
 ```
 LinkCluster-Professional-Profile/
@@ -98,7 +99,7 @@ LinkCluster-Professional-Profile/
 
 ---
 
-## CUSTOMIZATION GUIDE
+## **CUSTOMIZATION GUIDE**
 
 ### 1. Update Your Links
 
@@ -182,7 +183,7 @@ In `KzyINdex.html`, update the logo image source:
 
 ---
 
-## FORWARD DEPLOYMENT OPTIONS
+## **FORWARD DEPLOYMENT OPTIONS**
 
 All these platforms offer free hosting with automatic SSL:
 
@@ -216,7 +217,7 @@ netlify deploy --prod --dir=dist
 
 ---
 
-## IMPLEMENTED SECURITY FEATURES
+## **IMPLEMENTED SECURITY FEATURES**
 
 This project implements multiple security layers:
 
@@ -241,7 +242,7 @@ This project implements multiple security layers:
 
 ---
 
-## PERSONAL RECOMMENDATIONS 
+## **PERSONAL RECOMMENDATIONS**
 
 **SEO Optimization:**
 - Update `<title>` and meta tags in `KzyINdex.html`
@@ -265,7 +266,7 @@ This project implements multiple security layers:
 
 ---
 
-## HAVING ISSUES? TROUBLESHOOT!
+## **HAVING ISSUES? TROUBLESHOOT!**
 
 ### Links not showing?
 1. Ensure you're running a local server (not opening HTML file directly)
@@ -293,7 +294,7 @@ This project implements multiple security layers:
 
 ---
 
-## LICENSING
+## **LICENSING**
 
 This project is licensed under EULA (End User License Agreement).  
 See [EULA-LICENSE](./EULA-LICENSE) for full terms.
@@ -308,12 +309,8 @@ See [EULA-LICENSE](./EULA-LICENSE) for full terms.
 
 <div align="center">
 
-**Built with ❤️ by [C-Kuzy](https://github.com/C-Kuzy)**
-
 [Report Bug](https://github.com/C-Kuzy/LinkCluster-Professional-Profile/issues) · [Request Feature](https://github.com/C-Kuzy/LinkCluster-Professional-Profile/issues) · [Discussions](https://github.com/C-Kuzy/LinkCluster-Professional-Profile/discussions)
 
 ---
-
-© 2025 C-Kuzy Solutions. All rights reserved.
-
+© 2026 C-Kuzy Solutions. All rights reserved.
 </div>
